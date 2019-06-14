@@ -45,7 +45,7 @@ This project is part of Udacity's Data Engineering Nanodegree
 
 Clone the repo onto your machine with the following command:
 
-$ git checkout sparkify_postgres
+$ git checkout https://github.com/wyattshapiro/sparkify_postgres.git
 
 
 ## Dependencies
