@@ -76,7 +76,7 @@ song_select = ("""SELECT song.song_id, artist.artist_id \
                   WHERE (song.title = %s AND artist.name = %s AND song.duration = %s);""")
 
 # ANALYZE TABLES
-# most_active_users_last_year, most_active_users_last_month, most_played_artists_ever_select
+
 user_by_level = ("""SELECT level, COUNT(user_id) as user_count \
                     FROM app_user \
                     GROUP BY level \
