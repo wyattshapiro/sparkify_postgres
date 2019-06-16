@@ -66,7 +66,7 @@ artist_table_insert = ("""INSERT INTO artist (artist_id, name, location, latitud
 
 
 time_table_insert = ("""INSERT INTO time (start_time, hour, day, week, month, year, weekday) \
-                        VALUES(%s, %s, %s, %s, %s, %s, %s);""")
+                        VALUES(%s, %s, %s, %s, %s, %s, %s)""")
 
 # FIND SONGS
 # Query to find the song ID and artist ID based on the title, artist name, and duration of a song

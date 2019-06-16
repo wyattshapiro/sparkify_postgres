@@ -4,6 +4,7 @@ import psycopg2
 import pandas as pd
 import datetime
 from sql_queries import *
+from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME_SPARKIFY
 
 
 def process_song_file(cur, filepath):
@@ -83,7 +84,7 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
-    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=wyattshapiro password=")
+    conn = psycopg2.connect("host={} port={} dbname={} user={} password={}".format(DB_HOST, DB_PORT, DB_NAME_SPARKIFY, DB_USER, DB_PASSWORD))
     cur = conn.cursor()
 
     process_data(cur, conn, filepath='src/data/song_data', func=process_song_file)
