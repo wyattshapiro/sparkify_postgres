@@ -96,6 +96,10 @@ There are several main scripts:
   - src/etl.ipynb: For development. Reads and processes a *single file* from song_data and log_data and loads the data into your tables.
 - src/sql_queries.py: Contains all your sql queries, and is used during ETL process.
 
+**Steps to run** (assume virtualenv is activated with requirements installed)
+1. Configure src/config.py for your user
+2. $ python3 src/create_tables.py
+3. $ python3 src/etl.py
 
 ## Future Optimizations
 
