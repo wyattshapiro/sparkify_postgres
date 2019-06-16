@@ -96,7 +96,8 @@ There are several main scripts:
   - src/test.ipynb: Displays the first few rows of each table to let you check your database.
 - src/etl.py: Reads and processes *all files* from song_data and log_data and loads them into your tables.
   - src/etl.ipynb: For development. Reads and processes a *single file* from song_data and log_data and loads the data into your tables.
-- src/sql_queries.py: Contains all your sql queries, and is used during ETL process.
+- src/analyze_tables.py: Reads tables Postgres db to surface insights.
+- src/sql_queries.py: Contains all your sql queries, and is used during ETL process and analysis.
 
 **Steps to run**
 1. Navigate to top of project directory
@@ -107,6 +108,7 @@ There are several main scripts:
 6. Configure src/config.py for postgres user
 7. $ python3 src/create_tables.py
 8. $ python3 src/etl.py
+9. $ python3 src/analyze_tables.py
 
 ## Future Optimizations
 
