@@ -6,5 +6,5 @@ DB_HOST = '127.0.0.1'
 DB_PORT = '5432'
 DB_NAME_DEFAULT = 'studentdb'  # default database for user
 DB_NAME_SPARKIFY = 'sparkifydb'  # new database to store app data
-DB_USER = 'wyattshapiro'
-DB_PASSWORD = ''
+DB_USER = 'student'
+DB_PASSWORD = 'student'

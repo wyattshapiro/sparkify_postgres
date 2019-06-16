@@ -98,10 +98,15 @@ There are several main scripts:
   - src/etl.ipynb: For development. Reads and processes a *single file* from song_data and log_data and loads the data into your tables.
 - src/sql_queries.py: Contains all your sql queries, and is used during ETL process.
 
-**Steps to run** (assume virtualenv is activated with requirements installed)
-1. Configure src/config.py for your user
-2. $ python3 src/create_tables.py
-3. $ python3 src/etl.py
+**Steps to run**
+1. Navigate to top of project directory
+2. Create virtualenv (see Dependencies)
+3. Activate virtualenv (see Dependencies)
+4. Install requirements (see Dependencies)
+5. Start local postgres server (see Dependencies)
+6. Configure src/config.py for postgres user
+7. $ python3 src/create_tables.py
+8. $ python3 src/etl.py
 
 ## Future Optimizations
 
