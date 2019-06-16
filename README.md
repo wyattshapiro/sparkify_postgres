@@ -55,9 +55,11 @@ $ git checkout https://github.com/wyattshapiro/sparkify_postgres.git
 
 ## Dependencies
 
-I use Python 3.6.
+I use Python 3.7.
 
 See https://www.python.org/downloads/ for information on download.
+
+----
 
 I use virtualenv to manage dependencies, if you have it installed you can run
 the following commands from the root code directory to create the environment and
