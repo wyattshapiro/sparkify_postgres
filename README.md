@@ -5,7 +5,12 @@
 
 Structure the data that Sparkify (fictional company) has been collecting on songs and user activity for their new music streaming app for analysis.
 
-This project is part of Udacity's Data Engineering Nanodegree
+This project is part of Udacity's Data Engineering Nanodegree.
+
+README must:
+- Discuss the purpose of this database in the context of the startup, Sparkify, and their analytical goals.
+- State and justify your database schema design and ETL pipeline.
+- [Optional] Provide example queries and results for song play analysis.
 
 ## Data
 
@@ -59,6 +64,7 @@ the following commands from the root code directory to create the environment an
 activate it:
 
 $ python3 -m venv venv
+
 $ source venv/bin/activate
 
 See https://virtualenv.pypa.io/en/stable/ for more information.
@@ -84,17 +90,15 @@ See https://www.postgresql.org/ for more information.
 There are several main scripts that can be executed:
 
 - src/create_tables.py: Drops and creates your tables. You run this file to reset your tables before each time you run your ETL scripts.
-  - src/test.ipynb displays the first few rows of each table to let you check your database.
-- src/etl.py: Reads and processes files from song_data and log_data and loads them into your tables.
-  - src/etl.ipynb reads and processes a single file from song_data and log_data and loads the data into your tables. This notebook contains detailed instructions on the ETL process for each of the tables.
+  - src/test.ipynb: Displays the first few rows of each table to let you check your database.
+- src/etl.py: Reads and processes *all files* from song_data and log_data and loads them into your tables.
+  - src/etl.ipynb: For development. Reads and processes a *single file* from song_data and log_data and loads the data into your tables.
 - src/sql_queries.py: Contains all your sql queries, and is used during ETL process.
 
 
 ## Future Optimizations
 
 - Create config.py to specify environment variables like DB user, etc
-- Create foreign key relations for each table
-- Create a separate table for Sessions
 - Insert data using the COPY command to bulk insert log files instead of using INSERT on one row at a time
 - Add data quality checks
 - Create a dashboard for analytic queries on your new database
