@@ -1,6 +1,5 @@
-# Note: Storing crendentials is not recommended.
-# It is better practice to set as an environmental variable and dynamically retreive
-# For purpose of demo code, will use this config.py as a mock .bash_profile
+# Note: Storing credentials like this is not recommended.
+# For purpose of demo code, will use this config.py as a mock .bash_profile, etc
 
 # Database connection environment variables
 DB_HOST = '127.0.0.1'
