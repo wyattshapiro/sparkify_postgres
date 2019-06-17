@@ -77,11 +77,6 @@ song_select = ("""SELECT song.song_id, artist.artist_id \
 
 # ANALYZE TABLES
 
-user_by_level = ("""SELECT level, COUNT(user_id) as user_count \
-                    FROM app_user \
-                    GROUP BY level \
-                    ORDER BY user_count DESC;""")
-
 artist_play_count_all_time = ("""SELECT artist.name, COUNT(songplay.songplay_id) as songplay_count \
                                  FROM songplay \
                                  JOIN artist ON songplay.artist_id = artist.artist_id \
@@ -94,19 +89,24 @@ song_play_count_all_time = ("""SELECT song.title, COUNT(songplay.songplay_id) as
                                GROUP BY song.title \
                                ORDER BY songplay_count DESC;""")
 
-song_play_count_by_user_level = ("""SELECT app_user.level, COUNT(songplay.songplay_id) as songplay_count \
+user_by_level = ("""SELECT level as user_level, COUNT(user_id) as user_count \
+                    FROM app_user \
+                    GROUP BY level \
+                    ORDER BY user_count DESC;""")
+
+song_play_count_by_user_level = ("""SELECT app_user.level as user_level, COUNT(songplay.songplay_id) as songplay_count \
                                     FROM songplay \
                                     JOIN app_user ON songplay.user_id = app_user.user_id \
                                     GROUP BY app_user.level \
                                     ORDER BY songplay_count DESC;""")
 
-song_play_count_by_location = ("""SELECT location, COUNT(songplay_id) as songplay_count \
+song_play_count_by_location = ("""SELECT location as songplay_location, COUNT(songplay_id) as songplay_count \
                                   FROM songplay \
                                   GROUP BY location \
                                   ORDER BY songplay_count DESC \
                                   LIMIT 5;""")
 
-song_play_count_daily_by_hour = ("""SELECT time.hour, COUNT(songplay.songplay_id) as songplay_count \
+song_play_count_daily_by_hour = ("""SELECT time.hour as hour_of_day, COUNT(songplay.songplay_id) as songplay_count \
                                     FROM songplay \
                                     JOIN time ON songplay.start_time = time.start_time \
                                     GROUP BY time.hour \
@@ -117,4 +117,4 @@ song_play_count_daily_by_hour = ("""SELECT time.hour, COUNT(songplay.songplay_id
 
 create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
 drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
-analyze_table_queries = [user_by_level, artist_play_count_all_time, song_play_count_all_time, song_play_count_by_user_level, song_play_count_by_location, song_play_count_daily_by_hour]
+analyze_table_queries = [artist_play_count_all_time, song_play_count_all_time, user_by_level, song_play_count_by_user_level, song_play_count_by_location, song_play_count_daily_by_hour]
