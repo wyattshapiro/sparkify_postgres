@@ -3,14 +3,21 @@
 
 ## Goal
 
-Structure the data that Sparkify (fictional company) has been collecting on songs and user activity for their new music streaming app for analysis.
+Sparkify has been collecting on songs and user activity for their new music streaming app. One of their teams is interested in analyzing their users listening habits, which could help them classify their users for targeted ads, create/improve a recommendation algorithm for songs, and more. They are especially interested in the songs that users are playing.
 
-This project is part of Udacity's Data Engineering Nanodegree.
+Note: This project is for a fictional company and is part of Udacity's Data Engineering Nanodegree.
 
-README must:
-- Discuss the purpose of this database in the context of the startup, Sparkify, and their analytical goals.
-- State and justify your database schema design and ETL pipeline.
-- [Optional] Provide example queries and results for song play analysis.
+### Problem
+
+Currently, Sparkify's user history and song data is stored in JSON log formats.
+This format does not lend itself well to analysis.
+
+### Solution
+
+In order to enable a team to effectively gain insight from user activity, a data engineer needs to structure the data and load it into a database. The proposed plan consists of a Python ETL pipeline that will:
+
+- Extract each JSON file into a pandas dataframe.
+- Transform and load the data into a Postgres database with a star schema built to optimize for analysis of song plays.
 
 ## Data
 
@@ -35,7 +42,12 @@ README must:
 
 ### Entities
 
+The database is structured as a star schema for analysis of song plays. As such, the fact table (ie center of the star) will be songplays, and it will have it's associated dimensions related as foreign keys.
+
+Fact table
 - songplays: records in log data associated with song plays
+
+Dimension tables
 - app_users: users in the app
 - songs: songs in music database
 - artists: artists in music database
@@ -96,7 +108,8 @@ There are several main scripts:
   - src/test.ipynb: Displays the first few rows of each table to let you check your database.
 - src/etl.py: Reads and processes *all files* from song_data and log_data and loads them into your tables.
   - src/etl.ipynb: For development. Reads and processes a *single file* from song_data and log_data and loads the data into your tables.
-- src/sql_queries.py: Contains all your sql queries, and is used during ETL process.
+- src/analyze_tables.py: Runs queries on Postgres db to surface analytical insights.
+- src/sql_queries.py: Contains all your sql queries, and is used during ETL process and analysis.
 
 **Steps to run**
 1. Navigate to top of project directory
@@ -107,9 +120,17 @@ There are several main scripts:
 6. Configure src/config.py for postgres user
 7. $ python3 src/create_tables.py
 8. $ python3 src/etl.py
+9. $ python3 src/analyze_tables.py
+
+## Analysis
+
+In src/analyze_tables.py, I created several example queries. These queries showed that:
+- There are four times as many free users as paid users. However, paid users account for close to 63% of song plays.
+- Users appear to play songs from all over the US.
+- Song plays are highest from 9am-1pm.
 
 ## Future Optimizations
 
 - Insert data using the COPY command to bulk insert log files instead of using INSERT on one row at a time
 - Add data quality checks
-- Create a dashboard for analytic queries on your new database
+- Create a dashboard for analytic queries
