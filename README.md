@@ -42,7 +42,7 @@ In order to enable a team to effectively gain insight from user activity, a data
 
 ### Entities
 
-The database is structured as a star schema for analysis of song plays. As such, their will be five entities that will focus on the songplays as the center point of the star, and it's associated dimensions.
+The database is structured as a star schema for analysis of song plays. As such, the fact table (ie center of the star) will be songplays, and it will have it's associated dimensions related as foreign keys.
 
 Fact table
 - songplays: records in log data associated with song plays
