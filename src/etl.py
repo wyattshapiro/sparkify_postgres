@@ -8,6 +8,13 @@ from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME_SPARKIFY
 
 
 def process_song_file(cur, filepath):
+    """Transform and load JSON song files into Postgres tables.
+
+    Args
+        cur: cursor object, cursor bound to the connection that allows PostgreSQL to execute
+        filepath: string, path to song data file
+
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -21,6 +28,13 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """Transform and load JSON log files into Postgres table.
+
+    Args
+        cur: cursor object, cursor bound to the connection that allows PostgreSQL to execute
+        filepath: string, path to log data file
+
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -66,6 +80,15 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """Connect to default database.
+
+    Args
+        cur: cursor object, cursor bound to the connection that allows PostgreSQL to execute
+        conn: connection object, connection to a PostgreSQL database instance
+        filepath: string, path to directory of data
+        func: function, Python callable executed on each data file contained inside of filepath directory
+
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -85,6 +108,8 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """Transform and load data from JSON files to a Postgres database."""
+
     conn = psycopg2.connect("host={} port={} dbname={} user={} password={}".format(DB_HOST, DB_PORT, DB_NAME_SPARKIFY, DB_USER, DB_PASSWORD))
     cur = conn.cursor()
 

@@ -9,9 +9,9 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 # CREATE TABLES
 
 songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay (songplay_id SERIAL PRIMARY KEY, \
-                                                                 start_time TIMESTAMP, \
-                                                                 user_id VARCHAR, \
-                                                                 level VARCHAR,\
+                                                                 start_time TIMESTAMP NOT NULL, \
+                                                                 user_id VARCHAR NOT NULL, \
+                                                                 level VARCHAR, \
                                                                  song_id VARCHAR, \
                                                                  artist_id VARCHAR, \
                                                                  session_id VARCHAR, \
@@ -26,7 +26,7 @@ user_table_create = ("""CREATE TABLE IF NOT EXISTS app_user (user_id VARCHAR PRI
 
 song_table_create = ("""CREATE TABLE IF NOT EXISTS song (song_id VARCHAR PRIMARY KEY, \
                                                          title VARCHAR, \
-                                                         artist_id VARCHAR, \
+                                                         artist_id VARCHAR NOT NULL, \
                                                          year INTEGER, \
                                                          duration DECIMAL);""")
 
@@ -36,7 +36,7 @@ artist_table_create = ("""CREATE TABLE IF NOT EXISTS artist (artist_id VARCHAR P
                                                              latitude DECIMAL, \
                                                              longitude DECIMAL);""")
 
-time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time TIMESTAMP, \
+time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time TIMESTAMP PRIMARY KEY, \
                                                          hour INTEGER, \
                                                          day INTEGER, \
                                                          week INTEGER, \
@@ -52,7 +52,7 @@ songplay_table_insert = ("""INSERT INTO songplay (start_time, user_id, level, so
 user_table_insert = ("""INSERT INTO app_user (user_id, first_name, last_name, gender, level) \
                         VALUES(%s, %s, %s, %s, %s) \
                         ON CONFLICT (user_id) \
-                        DO NOTHING;""")
+                        DO UPDATE SET level = EXCLUDED.level;""")
 
 song_table_insert = ("""INSERT INTO song (song_id, title, artist_id, year, duration) \
                         VALUES(%s, %s, %s, %s, %s) \
@@ -66,7 +66,9 @@ artist_table_insert = ("""INSERT INTO artist (artist_id, name, location, latitud
 
 
 time_table_insert = ("""INSERT INTO time (start_time, hour, day, week, month, year, weekday) \
-                        VALUES(%s, %s, %s, %s, %s, %s, %s)""")
+                        VALUES(%s, %s, %s, %s, %s, %s, %s) \
+                        ON CONFLICT(start_time) \
+                        DO NOTHING;""")
 
 # FIND SONGS
 # Query to find the song ID and artist ID based on the title, artist name, and duration of a song

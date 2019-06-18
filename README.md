@@ -125,7 +125,7 @@ There are several main scripts:
 ## Analysis
 
 In src/analyze_tables.py, I created several example queries. These queries showed that:
-- There are four times as many free users as paid users. However, paid users account for close to 63% of song plays.
+- There are close to four times as many free users as paid users. However, paid users account for close to 80% of song plays.
 - Users appear to play songs from all over the US.
 - Song plays are highest from 9am-1pm.
 
